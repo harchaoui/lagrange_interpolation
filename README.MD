@@ -1,6 +1,6 @@
 Verification circuit for Lagrange interpolation. Two arrays as input and an array of polynomial coefficients as output. The size of arrays is 2^n. It is recommended to build components, which work for any n, but you can fix n = n' (thus you can fix the number of rows).
 
-${\displaystyle {\begin{aligned}\ell _{j}(x)&={\frac {(x-x_{0})}{(x_{j}-x_{0})}}\cdots {\frac {(x-x_{j-1})}{(x_{j}-x_{j-1})}}{\frac {(x-x_{j+1})}{(x_{j}-x_{j+1})}}\cdots {\frac {(x-x_{k})}{(x_{j}-x_{k})}}\\[10mu]&=\prod _{\begin{smallmatrix}0\leq m\leq k\\m\neq j\end{smallmatrix}}{\frac {x-x_{m}}{x_{j}-x_{m}}}.\end{aligned}}}$
+$\displaystyle {\begin{aligned}\ell _{j}(x)&={\frac {(x-x_{0})}{(x_{j}-x_{0})}}\cdots {\frac {(x-x_{j-1})}{(x_{j}-x_{j-1})}}{\frac {(x-x_{j+1})}{(x_{j}-x_{j+1})}}\cdots {\frac {(x-x_{k})}{(x_{j}-x_{k})}}\\[10mu]&=\prod _{\begin{smallmatrix}0\leq m\leq k\\m\neq j\end{smallmatrix}}{\frac {x-x_{m}}{x_{j}-x_{m}}}.\end{aligned}}$
 
 ```
 //|------|------|------ - ---- | ------ ------ -| ------ ------ | ------ -  ----|
