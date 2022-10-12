@@ -54,12 +54,12 @@ namespace nil
 
                 public:
                     // TODO compute total amouts of rows
-                    constexpr static const std::size_t rows_amount = power(2, 2 * ExponentSize);
+                    constexpr static const std::size_t rows_amount = (1 << 2 * ExponentSize);
 
                     struct params_type
                     {
-                        std::array<var, power(2, ExponentSize)> A;
-                        std::array<var, power(2, ExponentSize)> B;
+                        std::array<var, (1 << ExponentSize)> A;
+                        std::array<var, (1 << ExponentSize)> B;
                     };
 
                     struct result_type
