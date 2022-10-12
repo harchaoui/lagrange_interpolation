@@ -324,4 +324,4 @@ namespace nil
     }         // namespace actor
 } // namespace nil
 
-#endif // ACTOR_ZK_BLUEPRINT_PLONK_LAGRANGE_INTERPOLATION_HPP
+#endif // CRYPTO3_ZK_BLUEPRINT_PLONK_LAGRANGE_INTERPOLATION_HPP
