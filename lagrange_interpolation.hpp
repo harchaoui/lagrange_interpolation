@@ -5,16 +5,17 @@
 
 #include <nil/marshalling/algorithms/pack.hpp>
 
-#include <nil/actor/zk/snark/arithmetization/plonk/constraint_system.hpp>
+#include <nil/crypto3/zk/snark/arithmetization/plonk/constraint_system.hpp>
 
-#include <nil/actor/zk/blueprint/plonk.hpp>
-#include <nil/actor/zk/assignment/plonk.hpp>
-#include <nil/actor/zk/component.hpp>
+#include <nil/crypto3/zk/blueprint/plonk.hpp>
+#include <nil/crypto3/zk/assignment/plonk.hpp>
+#include <nil/crypto3/zk/component.hpp>
+#include <nil/crypto3/zk/algorithms/generate_circuit.hpp>
 #include <nil/crypto3/math/polynomial/polynomial.hpp>
 
 namespace nil
 {
-    namespace actor
+    namespace crypto3
     {
         namespace zk
         {
@@ -36,14 +37,14 @@ namespace nil
                           std::size_t W4,
                           std::size_t W5>
 
-                class lagrange_interpolation<snark::plonk_constraint_system<BlueprintFieldType,ArithmetizationParams>,
-                    ExponentSize,
-                    W0,
-                    W1,
-                    W2,
-                    W3,
-                    W4,
-                    W5>
+                class lagrange_interpolation<snark::plonk_constraint_system<BlueprintFieldType, ArithmetizationParams>,
+                                             ExponentSize,
+                                             W0,
+                                             W1,
+                                             W2,
+                                             W3,
+                                             W4,
+                                             W5>
                 {
 
                     typedef snark::plonk_constraint_system<BlueprintFieldType, ArithmetizationParams>
@@ -53,13 +54,12 @@ namespace nil
 
                 public:
                     // TODO compute total amouts of rows
-                    constexpr static const std::size_t rows_amount = power(2,2*ExponentSize);
-
+                    constexpr static const std::size_t rows_amount = power(2, 2 * ExponentSize);
 
                     struct params_type
                     {
-                        std::array<var, power(2,ExponentSize)> A;
-                        std::array<var, power(2,ExponentSize)> B;
+                        std::array<var, power(2, ExponentSize)> A;
+                        std::array<var, power(2, ExponentSize)> B;
                     };
 
                     struct result_type
