@@ -102,22 +102,20 @@ namespace nil
                         const params_type &params,
                         std::size_t component_start_row)
                     {
-                        std::size_t row = start_row_index;
-                        std::size_t size = assignment.var_value(params.A.size());
+                        std::size_t row = component_start_row;
+                        std::size_t size = params.A.size();
 
-                        // maybe i have to say
-                        // typename <FieldType> c;
                         typename FieldType::value_type pc;
 
-                        polynomial<typename FieldType::value_type> r(size, FieldType::value_type::zero());
-                        polynomial<typename FieldType::value_type> sx;
-                        polynomial<typename FieldType::value_type> sr;
-                        polynomial<typename FieldType::value_type> sp(2, FieldType::value_type::one());
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> r(size, BlueprintFieldType::value_type::zero());
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sx;
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sr;
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sp(2, BlueprintFieldType::value_type::one());
 
                         // aux var to store intermediate
-                        vector<typename FieldType::value_type> *W3_sx = new vector<typename FieldType::value_type>();
-                        vector<typename FieldType::value_type> *W4_sr = new vector<typename FieldType::value_type>();
-                        vector<typename FieldType::value_type> *W5_r = new vector<typename FieldType::value_type>();
+                        std::vector<typename BlueprintFieldType::value_type> *W3_sx = new std::vector<typename BlueprintFieldType::value_type>();
+                        std::vector<typename BlueprintFieldType::value_type> *W4_sr = new std::vector<typename BlueprintFieldType::value_type>();
+                        std::vector<typename BlueprintFieldType::value_type> *W5_r = new std::vector<typename BlueprintFieldType::value_type>();
 
                         for (std::size_t i = 0; i < size; i++)
                         {
@@ -194,7 +192,7 @@ namespace nil
                             assignment.witness(W5)[i] = W5_r->at(i)
                         }
 
-                        return result_type(start_row_index);
+                        return result_type(component_start_row);
                     } // end generate_assignments
 
                 private:
