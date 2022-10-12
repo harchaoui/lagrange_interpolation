@@ -204,12 +204,13 @@ namespace nil
                                    const std::size_t first_selector_index)
                     {
 
-                        double pc;
+                        typename BlueprintFieldType::value_type pc;
                         std::size_t size = assignment.var_value(params.A.size());
-                        polynomial<typename FieldType::value_type> r(size, FieldType::value_type::zero());
-                        polynomial<typename FieldType::value_type> sx;
-                        polynomial<typename FieldType::value_type> sr;
-                        polynomial<typename FieldType::value_type> sp(2, FieldType::value_type::one());
+
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> r(size, BlueprintFieldType::value_type::zero());
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sx;
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sr;
+                        nil::crypto3::math::polynomial<typename BlueprintFieldType::value_type> sp(2, BlueprintFieldType::value_type::one());
 
                         std::vector<snark::plonk_constraint<BlueprintFieldType>> constraints;
                         snark::plonk_constraint<BlueprintFieldType> constraints_w2;
@@ -217,10 +218,11 @@ namespace nil
                         snark::plonk_constraint<BlueprintFieldType> constraints_w4;
                         snark::plonk_constraint<BlueprintFieldType> constraints_w5;
 
-                        vector<long double> *W2_c = new vector<long double>();
-                        vector<long double> *W3_sx = new vector<long double>();
-                        vector<long double> *W4_sr = new vector<long double>();
-                        vector<long double> *W5_r = new vector<long double>();
+                        std::vector<typename BlueprintFieldType::value_type> *W2_c = new std::vector<typename BlueprintFieldType::value_type>();
+
+                        std::vector<typename BlueprintFieldType::value_type> *W3_sx = new std::vector<typename BlueprintFieldType::value_type>();
+                        std::vector<typename BlueprintFieldType::value_type> *W4_sr = new std::vector<typename BlueprintFieldType::value_type>();
+                        std::vector<typename BlueprintFieldType::value_type> *W5_r = new std::vector<typename BlueprintFieldType::value_type>();
 
                         for (std::size_t i = 0; i < size; i++)
                         {
@@ -237,9 +239,8 @@ namespace nil
                                 }
                             } // end for j
 
-                            sr = sx *
-                                 pc;    // it uses sx ^ pc which use {var(W0, i), var(W1,j), var(W1, i), - var(w1, j)}
-                            r = r + sr; // it uses sx which uses var(W1,j)
+                            sr = sx * pc; // it uses sx ^ pc which use {var(W0, i), var(W1,j), var(W1, i), - var(w1, j)}
+                            r = r + sr;   // it uses sx which uses var(W1,j)
 
                             // store intermediate values into W2_c to build constraints on W2
                             W2_c->push_back(pc);
