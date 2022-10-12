@@ -84,16 +84,15 @@ namespace nil
                     static result_type
                     generate_circuit(
                         blueprint<ArithmetizationType> &bp,
-                        blueprint_assignment_table<ArithmetizationType> &assignment,
+                        blueprint_public_assignment_table<ArithmetizationType> &assignment,
                         const params_type &params,
-                        allocated_data_type &allocated_data,
-                        std::size_t component_start_row)
+                        const std::size_t start_row_index)
                     {
 
-                        generate_gates(bp, assignment, params, allocated_data, component_start_row);
-                        generate_copy_constraints(bp, assignment, params, component_start_row);
+                        generate_gates(bp, assignment, params, start_row_index);
+                        generate_copy_constraints(bp, assignment, params, start_row_index);
 
-                        return result_type(params, component_start_row);
+                        return result_type(start_row_index);
                     } // end generate_circuit
 
                     // start generate_assignments
